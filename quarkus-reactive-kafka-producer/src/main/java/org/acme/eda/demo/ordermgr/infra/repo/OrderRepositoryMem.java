@@ -1,4 +1,4 @@
-package ibm.eda.demo.ordermgr.infra.repo;
+package org.acme.eda.demo.ordermgr.infra.repo;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ibm.eda.demo.ordermgr.domain.OrderEntity;
+import org.acme.eda.demo.ordermgr.domain.OrderEntity;
 
 @Singleton
 public class OrderRepositoryMem implements OrderRepository {

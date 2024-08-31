@@ -1,5 +1,5 @@
 {
-    "namespace": "ibm.eda.demo.ordermgr.infra.events",
+    "namespace": "org.acme.eda.demo.ordermgr.infra.events",
     "type": "record",
     "name": "OrderEvent",
     "fields": [

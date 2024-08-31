@@ -1,6 +1,8 @@
 # Quarkus app for producing event to Kafka via reactive messaging and AVRO
 
-Updated 7/27/2022
+Created January 2019 - Last Update with IBM 07/2022 - 
+Move to pure open source 08/2024, and align to Kafka 3.9, Quarkus 3.2.12.Final, JDK 11, jakarta packaging.
+
 ## What the template does
 
 * Use Quarkus and Microprofile 3.0 for health, metrics and open API extensions
@@ -15,7 +17,9 @@ quarkus create app quarkus-reactive-kafka-producer --extension=resteasy-reactive
 quarkus ext add smallrye-openapi smallrye-health  
 ```
 
-`apicurio-registry-avro` automatically creates Java Beans from avsc files saved in `src/main/avro` to the folder `target/generated-sources/avsc` which should be in your IDE java source path so you own class  can import those beans.
+`apicurio-registry-avro` automatically creates Java Beans from avsc files saved in `src/main/avro` to the folder `target/generated-sources/avsc` which should be in your IDE java source path so your own classes  can import those beans.
+
+The following tutorials and guides are important to study to get a better understanding of the code and configuration of this repository:
 
 * [See the schema registry avro quarkus guide](https://quarkus.io/guides/kafka-schema-registry-avro)
 * [See Dev Services for Kafka](https://quarkus.io/guides/kafka-dev-services)
@@ -29,10 +33,7 @@ The code is reusing the Domain Driven Design approach of layers to organize the 
 * **domain**: domain model and services supporting the business logic - Events are generate under the domain. It could have bean generated under infrastructure.
 * **infra**: to include the integration layer. This is where to find repository, the REST api or Kafka lower level component needed.
 
-Normally events can be considered at the domain level, as it is a business decision to 
-define what data elements to share with other. It is also fine to consider them at the 
-infrastructure level. In this template the avro schemas in `src/main/avro` use the package 
-namespace: `ibm.eda.demo.ordermgr.infra.events` but this could be changed to 
+Normally events can be considered at the domain level, as it is a business decision to define what data elements to share with other. It is also fine to consider them at the infrastructure layer level. In this template the avro schemas in `src/main/avro` uses the package namespace: `ibm.eda.demo.ordermgr.infra.events` but this could be changed to 
 be `ibm.eda.demo.ordermgr.domain.events`.
 
 The REST resource delegates to a service where you may want to implement the business logic

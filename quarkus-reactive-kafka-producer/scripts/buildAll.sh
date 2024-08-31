@@ -1,7 +1,7 @@
 #!/bin/bash
 scriptDir=$(dirname $0)
 
-IMAGE_NAME=quay.io/ibmcase/eda-qs-order-rms
+IMAGE_NAME=jbcodeforce/eda-qs-order-rms
 if [[ $# -eq 1 ]]
 then
   TAG=$1

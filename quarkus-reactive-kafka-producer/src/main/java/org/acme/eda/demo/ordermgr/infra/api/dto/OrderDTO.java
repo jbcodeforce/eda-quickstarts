@@ -1,9 +1,9 @@
-package ibm.eda.demo.ordermgr.infra.api.dto;
+package org.acme.eda.demo.ordermgr.infra.api.dto;
 
 import java.util.UUID;
 
-import ibm.eda.demo.ordermgr.domain.Address;
-import ibm.eda.demo.ordermgr.domain.OrderEntity;
+import org.acme.eda.demo.ordermgr.domain.Address;
+import org.acme.eda.demo.ordermgr.domain.OrderEntity;
 
 public class OrderDTO {
 	public String orderID;

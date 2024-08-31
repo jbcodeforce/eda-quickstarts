@@ -1,19 +1,19 @@
-package ibm.eda.demo.ordermgr.domain;
+package org.acme.eda.demo.ordermgr.domain;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
 import org.eclipse.microprofile.reactive.messaging.Message;
 
-import ibm.eda.demo.ordermgr.infra.events.Address;
-import ibm.eda.demo.ordermgr.infra.events.OrderEvent;
-import ibm.eda.demo.ordermgr.infra.repo.OrderRepository;
+import org.acme.eda.demo.ordermgr.infra.events.Address;
+import org.acme.eda.demo.ordermgr.infra.events.OrderEvent;
+import org.acme.eda.demo.ordermgr.infra.repo.OrderRepository;
 import io.smallrye.reactive.messaging.kafka.KafkaRecord;
 
 

@@ -1,8 +1,8 @@
-package ibm.eda.demo.ordermgr.infra.repo;
+package org.acme.eda.demo.ordermgr.infra.repo;
 
 import java.util.List;
 
-import ibm.eda.demo.ordermgr.domain.OrderEntity;
+import org.acme.eda.demo.ordermgr.domain.OrderEntity;
 
 public interface OrderRepository {
     public List<OrderEntity> getAll();

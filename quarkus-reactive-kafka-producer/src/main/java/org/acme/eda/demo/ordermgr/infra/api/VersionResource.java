@@ -1,16 +1,16 @@
-package ibm.eda.demo.ordermgr.infra.api;
+package org.acme.eda.demo.ordermgr.infra.api;
 
 import java.util.logging.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.event.Observes;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-import ibm.eda.demo.ordermgr.domain.OrderService;
+import org.acme.eda.demo.ordermgr.domain.OrderService;
 import io.quarkus.runtime.StartupEvent;
 
 @Path("/api/v1/version")

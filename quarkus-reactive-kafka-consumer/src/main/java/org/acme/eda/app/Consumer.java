@@ -1,4 +1,4 @@
-package ibm.tsa.eda.app;
+package org.acme.eda.app;
 
 import javax.enterprise.context.ApplicationScoped;
 

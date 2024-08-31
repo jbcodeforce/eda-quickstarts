@@ -1,22 +1,22 @@
-package ibm.eda.demo.ordermgr.infra.api;
+package org.acme.eda.demo.ordermgr.infra.api;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
-import ibm.eda.demo.ordermgr.domain.OrderEntity;
-import ibm.eda.demo.ordermgr.domain.OrderService;
-import ibm.eda.demo.ordermgr.infra.api.dto.OrderDTO;
+import org.acme.eda.demo.ordermgr.domain.OrderEntity;
+import org.acme.eda.demo.ordermgr.domain.OrderService;
+import org.acme.eda.demo.ordermgr.infra.api.dto.OrderDTO;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 
