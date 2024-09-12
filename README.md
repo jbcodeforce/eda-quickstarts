@@ -1,21 +1,23 @@
 # EDA Quickstarts
 
-UNDER CONSTRUCTION - Updated 07/28/2022
+UNDER CONSTRUCTION - Created 07/2022  Updated 09/2024
 
-This project includes a set of getting started code templates for your event driven projects. 
+This project includes a set of getting started code to demonstrate some EDA key concepts. 
 
 The approach is to use one of the different starting code folder to help implementing your own event driven solution. 
-Part of the IBM Garage methodology is to apply event storming and domain driven design to start your project on good track. 
-Once you have discovered events, aggregates, commands and bounded contexts the next step is to start your microservice with all the needed 
-artifacts to build, run locally and then deploy to OpenShift.
 
-We try to use the same structure for code to support Domain Driven Design practices as resource, service, domain, infrastructure, api...
 
-The main project includes the environment folder which supports different deployments:
+While event storming and domain driven design to start your project on good track, the code presented in this repository try to leverage the DDD application structure for microservice implementation, using analysis and design elements such as aggregates, commands, events and bounded contexts. 
 
-* to run Strimzi Kafka and Apicurio locally on your laptop using docker compose
-* to deploy strimzi on OpenShift with kustomize 
-* to deploy event streams on OpenShift with kustomize see the [eda-gitops-catalog](https://github.com/ibm-cloud-architecture/eda-gitops-catalog)
+The DDD code structure approach organizes code with resources (support RESTful resource and APIs), domain model and business services, infrastructure layer with repository and messaging.
+
+## A Java demo with Avro, Kafka Producer and Consumer
+
+This is a simple demonstration of deploying Kafka Strimzi operator and Kafka cluster on minikube and one Quarkus reactive messaging producer, and one quarkus reactive messaging consumer. The business domain is order managment.
+
+[See readme for installation and demonstration script](./java-avro-first-demo/README.md)
+
+
 
 Each project includes:
 
@@ -27,6 +29,7 @@ A template of GitOps project is in [the eda-quickdtart-gitops repository](https:
 configured and deployed.
 
 kam bootstrap --service-repo-url https://github.com/jbcodeforce/eda-demo-order-ms --gitops-repo-url  https://github.com/jbcodeforce/eda-demo-order-gitops --image-repo quay.io/ibmcase/eda-order-rms --output eda-demo-order-gitops --prefix edademo --push-to-git=true --git-host-access-token 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
+
 ## Java templates
 
 We are adopting Quarkus (current version is 2.5) as our main Java Microprofile framework, for the development experience, and the excellent performance to start in Kubernetes.

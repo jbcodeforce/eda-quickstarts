@@ -14,3 +14,4 @@ reefer-ms/
 secrets/
 .idea/
 .DS_Store
+**/client.properties

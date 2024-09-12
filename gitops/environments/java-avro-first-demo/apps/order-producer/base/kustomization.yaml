@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: demo-1-ns   # change this ns only to change to all other files
+resources:
+- configmap.yaml
+- deployment.yaml
+- service.yaml

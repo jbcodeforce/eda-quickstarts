@@ -7,7 +7,7 @@ import javax.json.bind.JsonbBuilder;
 
 import org.junit.jupiter.api.Test;
 
-import ibm.tsa.eda.demo.domain.Product;
+import org.acme.eda.demo.domain.Product;
 
 public class TestSerialization {
     

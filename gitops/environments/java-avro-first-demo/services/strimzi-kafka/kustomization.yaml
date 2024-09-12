@@ -1,0 +1,5 @@
+namespace: kafka
+resources:
+  - kafka-cluster.yaml
+  - kafka-users.yaml
+  - kafka-topics.yaml
