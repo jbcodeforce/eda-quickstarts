@@ -18,13 +18,19 @@ Developers and solution architects.
 ## Source of information
 
 The following tutorials and guides are important to study to get a better understanding of the code and configuration of this repository:
-
-* [See the schema registry avro quarkus guide](https://quarkus.io/guides/kafka-schema-registry-avro)
+\
+* [Quarkus 3.2 final release compatible with JDK 11 with Avro](https://quarkus.io/version/3.2/guides/kafka-schema-registry-avro)
+* [Dev Services for Apicurio Registry](https://quarkus.io/version/3.2/guides/apicurio-registry-dev-services) to automatically starts an Apicurio Registry instance in dev mode and when running tests. 
 * [See Dev Services for Kafka](https://quarkus.io/guides/kafka-dev-services)
-* [and Dev Services for Apicurio Registry](https://quarkus.io/guides/apicurio-registry-dev-services)
 
 
-## Pre-requisites
+## Development mode
+
+http://localhost:8080/q/swagger-ui/
+
+## Deployment
+
+### Pre-requisites
 
 1. Start minikube
 
@@ -50,10 +56,10 @@ The following tutorials and guides are important to study to get a better unders
     ./install_operator.sh
     ```
 
-## Build the microservices
+### Build the microservices
 
-* Build the two images in one command: `buildAll.sh`
-* Build the image individually:
+* Build the two images in one command: `buildAll.sh`, which will keep the image inside of Minikube 'image registry'
+* Or build the image individually:
 
     ```sh
     # 
@@ -66,9 +72,12 @@ The following tutorials and guides are important to study to get a better unders
 
 ## Gitops and Kustomize structure
 
+
+### Deploy to minikube
+
 Under gitops/environments/java-avro-first-demo:
 
-* Create namespace for the demo: ` kubectl apply -k env/`
 * Create Kafka Cluster: `kubectl apply -k services/strimzi-kafka/` under the `kafka` namespace
+* Create namespace for the demo: ` kubectl apply -k env/`
 * Start producer app: `kubectl apply -k apps/order-producer/base/`
 * Start consumerc app: `kubectl apply -k apps/order-consumer/base/`

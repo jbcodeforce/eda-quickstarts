@@ -6,13 +6,14 @@ import java.util.logging.Logger;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
 import org.eclipse.microprofile.reactive.messaging.Message;
 
-import org.acme.eda.demo.ordermgr.infra.events.Address;
-import org.acme.eda.demo.ordermgr.infra.events.OrderEvent;
+
+import org.acme.eda.demo.ordermgr.infra.events.OrderEventProducer;
 import org.acme.eda.demo.ordermgr.infra.repo.OrderRepository;
 import io.smallrye.reactive.messaging.kafka.KafkaRecord;
 
@@ -23,40 +24,19 @@ public class OrderService {
 
 	@Inject
 	public OrderRepository repository;
-    @Channel("orders")
-	public Emitter<OrderEvent> eventProducer;
-	
+	@Inject
+	public OrderEventProducer eventProducer;
+
 	public OrderService(){}
 	
+	@Transactional
 	public OrderEntity createOrder(OrderEntity order) {
 		if (order.creationDate == null) {
 			order.creationDate = LocalDate.now().toString();
 		}
 		order.updateDate= order.creationDate;
 		repository.addOrder(order);
-		Address deliveryAddress = new Address(order.getDeliveryAddress().getStreet()
-				,order.getDeliveryAddress().getCity()
-				,order.getDeliveryAddress().getCountry()
-				,order.getDeliveryAddress().getState(),
-				order.getDeliveryAddress().getZipcode());
-		OrderEvent orderPayload =
-		 new OrderEvent(order.getOrderID(),
-				order.getProductID(),
-				order.getCustomerID(),
-				order.getQuantity(),
-				order.getStatus(),
-		        order.creationDate,
-				order.updateDate,
-				deliveryAddress,
-				"OrderCreatedEvent");	
-		try {
-			
-			Message<OrderEvent> record = KafkaRecord.of(order.getOrderID(),orderPayload);
-			eventProducer.send(record);
-			logger.info("order created event sent for " + order.getOrderID());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		eventProducer.emitCreateOrderEventFromOder(order);
 		return order;
 	}
 
@@ -64,34 +44,11 @@ public class OrderService {
 		return repository.getAll();
 	}
 
+	@Transactional
     public OrderEntity updateOrder(OrderEntity order) {
 		order.updateDate = LocalDate.now().toString();
 		repository.updateOrder(order);
-		Address deliveryAddress = null;
-		if (order.getDeliveryAddress() !=null) {
-			deliveryAddress = new Address(order.getDeliveryAddress().getStreet()
-			,order.getDeliveryAddress().getCity()
-			,order.getDeliveryAddress().getCountry()
-			,order.getDeliveryAddress().getState(),
-			order.getDeliveryAddress().getZipcode());
-		}
-		
-		OrderEvent orderPayload =
-		 new OrderEvent(order.getOrderID(),
-				order.getProductID(),
-				order.getCustomerID(),
-				order.getQuantity(),
-				order.getStatus(),
-		        order.creationDate,
-				order.updateDate,
-				deliveryAddress,
-				"OrderUpdateEvent");	
-			try {
-				logger.info("emit order updated event for " + order.getOrderID());
-				eventProducer.send(orderPayload);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		eventProducer.emitUpdateOrderEventFromOder(order);
 		return order;
     }
 
